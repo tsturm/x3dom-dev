@@ -6,5 +6,6 @@ log("foo");
 log("bar");
 log("foo");
 error("blob");
+error("blib");
 log("bar");
 //# sourceMappingURL=index.js.map
