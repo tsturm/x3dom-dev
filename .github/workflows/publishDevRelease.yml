@@ -1,0 +1,75 @@
+name: Publish Dev Release
+on:
+  repository_dispatch:
+    types: [x3dom-pushed]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Release
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.client_payload.repository }}
+          ref: ${{ github.event.client_payload.ref }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+      - name: Setup Node
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 16.x
+      - name: Build release
+        run: |
+          npm install
+          npm run build
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: x3dom-dist
+          path: dist/
+  update:
+    runs-on: ubuntu-latest
+    needs: build
+    outputs:
+      has_changed: ${{ steps.add_commit.outputs.committed }}
+    steps:
+      - name: Checkout current head
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+      - name: Check if dist folder exists
+        id: check_dist
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "dist"
+      - name: Remove entire dist-folder
+        if: steps.check_dist.outputs.files_exists == 'true'
+        run: git rm -r dist/
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: x3dom-dist
+          path: dist/
+      - name: Add and Commit
+        id: add_commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'dist/'
+          message: ${{ github.event.client_payload.sha }}
+  publish:
+    runs-on: ubuntu-latest
+    needs: update
+    steps:
+      - name: Checkout new head
+        if: needs.update.outputs.has_changed == 'true'
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+      - name: Publish release
+        if: needs.update.outputs.has_changed == 'true'
+        uses: "ncipollo/release-action@v1"
+        with:
+          tag: "${{ github.event.client_payload.sha }}"
+          token: "${{ secrets.REPO_ACCESS_TOKEN }}"
+          prerelease: false
+          artifacts: dist/*.js
+            
