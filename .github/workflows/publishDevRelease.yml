@@ -12,6 +12,11 @@ jobs:
           repository: ${{ github.event.client_payload.repository }}
           ref: ${{ github.event.client_payload.ref }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          fetch-depth: 0
+      - name: Get build number
+        run: echo "BUILD_NUMBER=b$(git rev-list --count HEAD)" >> $GITHUB_ENV
+      - name: Show Build number
+        run: echo $BUILD_NUMBER
       - name: Setup Node
         uses: actions/setup-node@v3.6.0
         with:
