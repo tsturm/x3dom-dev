@@ -1,8 +1,8 @@
 /** 
  * X3DOM 1.8.3-dev
- * Build : 39
- * Revision: 516e232bfcd338e73830be48f0ac3e5b94bfffa5
- * Date: Sun Jul 30 15:48:02 2023 +0200
+ * Build : 40
+ * Revision: ae361bacd5b9fb8c834d4b37e925b7129db31b93
+ * Date: Sun Jul 30 16:07:09 2023 +0200
  */
 /**
  * X3DOM JavaScript Library
@@ -29,9 +29,9 @@ var x3dom = {
 
 x3dom.about = {
     version  : "1.8.3-dev",
-    build    : "39",
-    revision : "516e232bfcd338e73830be48f0ac3e5b94bfffa5",
-    date     : "Sun Jul 30 15:48:02 2023 +0200"
+    build    : "40",
+    revision : "ae361bacd5b9fb8c834d4b37e925b7129db31b93",
+    date     : "Sun Jul 30 16:07:09 2023 +0200"
 };
 
 /**
@@ -20531,6 +20531,8 @@ x3dom.Cache = function ()
 {
     this.textures = [];
     this.shaders = [];
+
+    console.log("test");
 };
 
 /**
