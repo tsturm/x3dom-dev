@@ -1,6 +1,6 @@
 # X3DOM - Latest Develop Build via jsDelivr
 
-This repository serves as a source for obtaining the latest development build of the X3DOM library through the jsDelivr content delivery network (CDN).
+This repository serves as a source for obtaining the latest development build of the X3DOM library through the [jsDelivr](https://www.jsdelivr.com/) content delivery network (CDN).
 
 ## Usage
 To include the latest development build of X3DOM in your web application, you can use the following URL in your HTML code:
