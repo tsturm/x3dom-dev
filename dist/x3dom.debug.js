@@ -1,8 +1,8 @@
 /** 
  * X3DOM 1.8.3-dev
- * Build : 47
- * Revision: f56f7dd5f8e51ed5f4c0ef93f6fa027cb588d7ce
- * Date: Sat Aug 5 00:39:42 2023 -0400
+ * Build : 49
+ * Revision: 5c5bd8ccc966e413cca664f1ba0c3351b47b9eb4
+ * Date: Sat Aug 5 00:42:56 2023 -0400
  */
 /**
  * X3DOM JavaScript Library
@@ -29,9 +29,9 @@ var x3dom = {
 
 x3dom.about = {
     version  : "1.8.3-dev",
-    build    : "47",
-    revision : "f56f7dd5f8e51ed5f4c0ef93f6fa027cb588d7ce",
-    date     : "Sat Aug 5 00:39:42 2023 -0400"
+    build    : "49",
+    revision : "5c5bd8ccc966e413cca664f1ba0c3351b47b9eb4",
+    date     : "Sat Aug 5 00:42:56 2023 -0400"
 };
 
 /**
@@ -57589,7 +57589,6 @@ x3dom.DefaultNavigation.prototype.onDoubleClick = function ( view, x, y )
     x3dom.debug.logInfo( "New camera position:  " + from );
     view.animateTo( mat.inverse(), viewpoint );
 };
-
 
 x3dom.TurntableNavigation = function ( navigationNode )
 {
