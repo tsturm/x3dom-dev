@@ -1,8 +1,8 @@
 /** 
  * X3DOM 1.8.3-dev
- * Build : 66
- * Revision: 1ac33c007aab022b50d31f0fcb4a5c180be18e02
- * Date: Wed Oct 2 20:52:07 2024 +0200
+ * Build : 67
+ * Revision: db81b22cf0de0b0efe12c3e8d5435db592cae4d3
+ * Date: Wed Oct 2 20:55:19 2024 +0200
  */
 /**
  * X3DOM JavaScript Library
@@ -29,9 +29,9 @@ var x3dom = {
 
 x3dom.about = {
     version  : "1.8.3-dev",
-    build    : "66",
-    revision : "1ac33c007aab022b50d31f0fcb4a5c180be18e02",
-    date     : "Wed Oct 2 20:52:07 2024 +0200"
+    build    : "67",
+    revision : "db81b22cf0de0b0efe12c3e8d5435db592cae4d3",
+    date     : "Wed Oct 2 20:55:19 2024 +0200"
 };
 
 /**
@@ -345,8 +345,6 @@ x3dom.debug = {
     ERROR     : "ERROR",
     EXCEPTION : "EXCEPTION",
 
-
-    
     // determines whether debugging/logging is active. If set to "false"
     // no debugging messages will be logged.
     isActive : false,
