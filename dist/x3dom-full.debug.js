@@ -1,8 +1,8 @@
 /** 
  * X3DOM 1.8.3-dev
- * Build : 51
- * Revision: 47dabebda689a2fd199d4e2badc2cd029d09f502
- * Date: Mon Aug 7 19:45:47 2023 +0200
+ * Build : 54
+ * Revision: fb37c02edeac6a112ed9dcaa55f7851824f2b489
+ * Date: Wed Oct 2 18:05:07 2024 +0200
  */
 /**
  * X3DOM JavaScript Library
@@ -29,9 +29,9 @@ var x3dom = {
 
 x3dom.about = {
     version  : "1.8.3-dev",
-    build    : "51",
-    revision : "47dabebda689a2fd199d4e2badc2cd029d09f502",
-    date     : "Mon Aug 7 19:45:47 2023 +0200"
+    build    : "54",
+    revision : "fb37c02edeac6a112ed9dcaa55f7851824f2b489",
+    date     : "Wed Oct 2 18:05:07 2024 +0200"
 };
 
 /**
@@ -349,6 +349,8 @@ x3dom.debug = {
     // no debugging messages will be logged.
     isActive : false,
 
+
+    
     // stores if firebug is available
     isFirebugAvailable : false,
 
@@ -23023,6 +23025,8 @@ x3dom.Mesh = function ( parent )
     this._invalidate = true;
     this._numFaces = 0;
     this._numCoords = 0;
+
+    
 
     // cp. x3dom.Utils.primTypeDic for type list
     this._primType = "TRIANGLES";
