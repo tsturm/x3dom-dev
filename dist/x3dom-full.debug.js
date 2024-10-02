@@ -1,8 +1,8 @@
 /** 
  * X3DOM 1.8.3-dev
- * Build : 54
- * Revision: fb37c02edeac6a112ed9dcaa55f7851824f2b489
- * Date: Wed Oct 2 18:05:07 2024 +0200
+ * Build : 55
+ * Revision: e91d142db03827bfb960b6593d8730aaada81bf0
+ * Date: Wed Oct 2 18:15:26 2024 +0200
  */
 /**
  * X3DOM JavaScript Library
@@ -29,9 +29,9 @@ var x3dom = {
 
 x3dom.about = {
     version  : "1.8.3-dev",
-    build    : "54",
-    revision : "fb37c02edeac6a112ed9dcaa55f7851824f2b489",
-    date     : "Wed Oct 2 18:05:07 2024 +0200"
+    build    : "55",
+    revision : "e91d142db03827bfb960b6593d8730aaada81bf0",
+    date     : "Wed Oct 2 18:15:26 2024 +0200"
 };
 
 /**
@@ -349,8 +349,6 @@ x3dom.debug = {
     // no debugging messages will be logged.
     isActive : false,
 
-
-    
     // stores if firebug is available
     isFirebugAvailable : false,
 
