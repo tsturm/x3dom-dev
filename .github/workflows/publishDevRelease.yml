@@ -12,18 +12,15 @@ jobs:
       - name: Get App token
         uses: wow-actions/use-app-token@v2
         with:
+          id: generate_token
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
-          # Specify true to save app token and app slug into the secrets of current repository
-          secret: true
-          # Specify true to clean saved secrets when workflow run completed
-          clean: true
       - name: Checkout Release
         uses: actions/checkout@v4
         with:
           repository: ${{ github.event.client_payload.repository }}
           ref: ${{ github.event.client_payload.ref }}
-          token: ${{ secrets.BOT_TOKEN }}
+          token: ${{ steps.generate_token.outputs.BOT_TOKEN }}
           fetch-depth: 0
       - name: Get build number
         id: build_number
