@@ -10,9 +10,9 @@ jobs:
       commit_date: ${{steps.commit_date.outputs.COMMIT_DATE}}
     steps:
       - name: Get App token
+        id: generate_token
         uses: wow-actions/use-app-token@v2
         with:
-          id: generate_token
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
       - name: Checkout Release
