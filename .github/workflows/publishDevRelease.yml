@@ -100,7 +100,7 @@ jobs:
         uses: "ncipollo/release-action@v1"
         with:
           tag: ${{ needs.build.outputs.commit_date }}_${{ needs.build.outputs.build_number }}
-          token: "${{ secrets.BOT_TOKEN }}"
+          token: "${{ steps.app_token.outputs.token }}"
           prerelease: false
           artifacts: dist/*.js
       - name: Remove old releases
