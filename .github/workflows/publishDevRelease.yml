@@ -9,7 +9,7 @@ jobs:
       build_number: ${{steps.build_number.outputs.BUILD_NUMBER}}
     steps:
       - name: Checkout Release
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.event.client_payload.repository }}
           ref: ${{ github.event.client_payload.ref }}
@@ -19,7 +19,7 @@ jobs:
         id: build_number
         run: echo "BUILD_NUMBER=$(git rev-list --count HEAD)" >> $GITHUB_OUTPUT
       - name: Setup Node
-        uses: actions/setup-node@v3.6.0
+        uses: actions/setup-node@v4
         with:
           node-version: 16.x
       - name: Build release
@@ -29,7 +29,7 @@ jobs:
       - name: Remove archive
         run: find dist/ -type f -name '*.zip' -delete
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: x3dom-dist
           path: dist/
@@ -41,19 +41,19 @@ jobs:
       has_changed: ${{ steps.add_commit.outputs.committed }}
     steps:
       - name: Checkout current head
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
       - name: Check if dist folder exists
         id: check_dist
-        uses: andstor/file-existence-action@v2
+        uses: andstor/file-existence-action@v3
         with:
           files: "dist"
       - name: Remove entire dist-folder
         if: steps.check_dist.outputs.files_exists == 'true'
         run: git rm -r dist/
       - name: Download Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: x3dom-dist
           path: dist/
@@ -69,7 +69,7 @@ jobs:
     steps:
       - name: Checkout new head
         if: needs.update.outputs.has_changed == 'true'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: 'main'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
@@ -77,13 +77,13 @@ jobs:
         if: needs.update.outputs.has_changed == 'true'
         uses: "ncipollo/release-action@v1"
         with:
-          tag: b${{ needs.build.outputs.build_number }}
+          tag: ${{ github.event.repository.updated_at }}-${{ needs.build.outputs.build_number }}
           token: "${{ secrets.REPO_ACCESS_TOKEN }}"
           prerelease: false
           artifacts: dist/*.js
       - name: Remove old releases
         if: needs.update.outputs.has_changed == 'true'
-        uses: dev-drprasad/delete-older-releases@v0.2.1
+        uses: dev-drprasad/delete-older-releases@v0.3.4
         with:
           keep_latest: 1
           delete_tags: true
