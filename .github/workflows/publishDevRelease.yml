@@ -15,6 +15,7 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
+          owner: tsturm
       - name: Checkout Release
         uses: actions/checkout@v4
         with:
@@ -56,6 +57,7 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
+          owner: tsturm
       - name: Checkout current head
         uses: actions/checkout@v4
         with:
@@ -89,6 +91,7 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
+          owner: tsturm
       - name: Checkout new head
         if: needs.update.outputs.has_changed == 'true'
         uses: actions/checkout@v4
