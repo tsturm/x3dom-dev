@@ -66,12 +66,10 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           add: 'dist/'
-          message: b${{ needs.build.outputs.build_number }}
+          message: ${{ needs.build.outputs.commit_date }}_${{ needs.build.outputs.build_number }}
   publish:
     runs-on: ubuntu-latest
     needs: [build,update]
-    outputs:
-      date: ${{ steps.publish_release.outputs.date }}
     steps:
       - name: Checkout new head
         if: needs.update.outputs.has_changed == 'true'
