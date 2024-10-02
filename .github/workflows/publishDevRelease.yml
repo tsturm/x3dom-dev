@@ -14,6 +14,10 @@ jobs:
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
+          # Specify true to save app token and app slug into the secrets of current repository
+          secret: true
+          # Specify true to clean saved secrets when workflow run completed
+          clean: true
       - name: Checkout Release
         uses: actions/checkout@v4
         with:
@@ -54,6 +58,10 @@ jobs:
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
+          # Specify true to save app token and app slug into the secrets of current repository
+          secret: true
+          # Specify true to clean saved secrets when workflow run completed
+          clean: true
       - name: Checkout current head
         uses: actions/checkout@v4
         with:
@@ -86,6 +94,10 @@ jobs:
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
+          # Specify true to save app token and app slug into the secrets of current repository
+          secret: true
+          # Specify true to clean saved secrets when workflow run completed
+          clean: true
       - name: Checkout new head
         if: needs.update.outputs.has_changed == 'true'
         uses: actions/checkout@v4
