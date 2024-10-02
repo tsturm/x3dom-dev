@@ -10,8 +10,8 @@ jobs:
       commit_date: ${{steps.commit_date.outputs.COMMIT_DATE}}
     steps:
       - name: Get App token
-        id: generate_token
-        uses: wow-actions/use-app-token@v2
+        id: app_token
+        uses: getsentry/action-github-app-token@v3.1
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
@@ -20,7 +20,7 @@ jobs:
         with:
           repository: ${{ github.event.client_payload.repository }}
           ref: ${{ github.event.client_payload.ref }}
-          token: ${{ steps.generate_token.outputs.BOT_TOKEN }}
+          token: ${{ steps.app_token.outputs.token }}
           fetch-depth: 0
       - name: Get build number
         id: build_number
@@ -51,18 +51,15 @@ jobs:
       has_changed: ${{ steps.add_commit.outputs.committed }}
     steps:
       - name: Get App token
-        uses: wow-actions/use-app-token@v2
+        id: app_token
+        uses: getsentry/action-github-app-token@v3.1
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
-          # Specify true to save app token and app slug into the secrets of current repository
-          secret: true
-          # Specify true to clean saved secrets when workflow run completed
-          clean: true
       - name: Checkout current head
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
+          token: ${{ steps.app_token.outputs.token }}
       - name: Check if dist folder exists
         id: check_dist
         uses: andstor/file-existence-action@v3
@@ -87,20 +84,17 @@ jobs:
     needs: [build,update]
     steps:
       - name: Get App token
-        uses: wow-actions/use-app-token@v2
+        id: app_token
+        uses: getsentry/action-github-app-token@v3.1
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
-          # Specify true to save app token and app slug into the secrets of current repository
-          secret: true
-          # Specify true to clean saved secrets when workflow run completed
-          clean: true
       - name: Checkout new head
         if: needs.update.outputs.has_changed == 'true'
         uses: actions/checkout@v4
         with:
           ref: 'main'
-          token: ${{ secrets.BOT_TOKEN }}
+          token: ${{ steps.app_token.outputs.token }}
       - name: Publish release
         if: needs.update.outputs.has_changed == 'true'
         uses: "ncipollo/release-action@v1"
@@ -116,5 +110,5 @@ jobs:
           keep_latest: 1
           delete_tags: true
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app_token.outputs.token }}
             
