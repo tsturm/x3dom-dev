@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Get App token
         id: app_token
-        uses: getsentry/action-github-app-token@v3.1
+        uses: getsentry/action-github-app-token@v3
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
@@ -52,7 +52,7 @@ jobs:
     steps:
       - name: Get App token
         id: app_token
-        uses: getsentry/action-github-app-token@v3.1
+        uses: getsentry/action-github-app-token@v3
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
@@ -85,7 +85,7 @@ jobs:
     steps:
       - name: Get App token
         id: app_token
-        uses: getsentry/action-github-app-token@v3.1
+        uses: getsentry/action-github-app-token@v3
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
