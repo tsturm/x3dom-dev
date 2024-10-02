@@ -10,7 +10,7 @@ jobs:
       commit_date: ${{steps.commit_date.outputs.COMMIT_DATE}}
     steps:
       - name: Get App token
-      - uses: wow-actions/use-app-token@v2
+        uses: wow-actions/use-app-token@v2
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
